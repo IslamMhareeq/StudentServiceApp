@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "hopeful-vine-415017",
+  "private_key_id": "56f2d2dc4560e0fc7e78fd29e244bbf6c72432fe",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCLQZzaQEb9gL/E\niaiPQ+iwdo0n3hfJ1Bs59YvJB3K+IO6wKu1Z/VOpa2Dk+dAmmAmpiEtPa7UQFJMw\nZNuzLylXWtHdHzgVZyBzpaBI3ZRD10gKEmUJy8I+tcl6mekWcXbgwYkuTC+PCCpl\nBjz4595xfbPt/SUcyJTLYRq7quZZyhor6PTjx2lJHCJSiniNzfKB7wLOY6gufNp1\nAZPQkSg3YUbboDya+cya7rO1ubuNGbhMkMzw3IFyYPPijpxj4BWgUPWSk7aeRK4K\nf5YbkfoxELg3CmcuBKUMLMJaMIdsAm3ctgOeThYumQjpathDp/rz7PIPEkBnv6eN\n83VbI0ANAgMBAAECggEAAju738Dc7URunSDO8WlCWJcLemKYLkuhYUOG0MbTFMXc\nU3OEy04suCXO4Z7/z4v6HepRnDb3Yuuwqi1qIwx7TcCgEcmCjiP8GU62FxbZwZnj\ncX5aXM/NCRjECpwnaMZ1L1cJesuoxu9pT/sg6KYhjd+gY7gbVjWsM+Wyncg4mdwi\nPH71yLp2m9DIZcnrjIiwzXm0xw5rLtNdNu9t//OnXKC7ty8FOKWJbQrrBX/8miJg\nu79C58WVKDddGlg9+7efngaMTZOmK9X4BwMhNKglI80Y0fr6aaZGeErdmY3HdKtN\ne46PLquZZvBrLeOeAhUtL/ieDqpweRgush7bgA1ioQKBgQDEZS+6JZ6IEbjdh/Qy\nGceLuMpZboUmZRGwrj4y7oKCPQZXr2iJ8p9MVMQDUVQopeAx+VepksS37cF7CUav\nBFYrmBRaLVweRTq2nchQ+9cUj2XT4XzUSiVLomgOIFquyTeNdk/7rolyXq5avT3V\n28KnSSoaffQf1JjnW0eeZv3o/QKBgQC1hQxu7ZFF+/UVwJ5B9V39QTR1cd9Jo8bC\nwb+ed1MwhlPeUcAQKMjYYnHZMhlCVcRxY4CyDDsl//TRX9WFU6w6vNAuaQ7mZoJV\nlJ9LITbacM1eCycLqsdGYpUq4AQ6vMcGFBct+LKqhyXnyCW6PCT+aRY3JrG79flE\n0BGX3YkoUQKBgDOOLH09KuSlYlYlPmF4iv2OwO/BJ4rwtTggRYuxOOlfg665CURN\nQKwVBG+qheE1yijUP8LwGFwAOe5GfRusk8JV5eHWTnxTyBnwSYmY0tk+24hHhTFl\nVW0JcS9kJuoDQGYOTOjQ5Jv1ZufDDdx6GBs6Bad2sQM6F/mD6MUYXEcxAoGBAIQD\nenJmhsP+JVWnm7FesPeR54QOyBS3bsOPwzuNjsv4taA3llZqQv/UQPZ0UBiFZfQN\nKLjU2mOdjkCD0TdBDj49ua43K+X24Y06JMuwIUOmzEU8GS6MCpeu9MuU1p6dUqWi\nEOWXPOF2nuO+FWonecQpS0Xa92I61wnrxQ/Mx4axAoGAND460wI2FYyVO3RtZlcN\nAoXDFipqiw2ZtjyLOAc1dwZ11DmTR9EmQm1qJp1Zs//elDodJXmjxv/1Cpe0zea0\nx6+n9iXbUMgUP1saEGNDVloquWZb377MdM5uvBrnbHa0UrE6IYTu7N8sRzzWWhHf\nPuoKNIVsEguyUFVk8mTvKqE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pass-reset-api@hopeful-vine-415017.iam.gserviceaccount.com",
+  "client_id": "114713920980895909035",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pass-reset-api%40hopeful-vine-415017.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "creating-registration-and-login-form-in-nodejs-and-mongodb",
+  "version": "1.0.0",
+  "description": "College Project ",
+  "main": "server.js",
+  "dependencies": {
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.9",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "googleapis": "^133.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^5.13.22",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.9",
+    "socket.io": "^4.7.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "MahmoodGneam",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,144 @@
+/* Enhanced Main Page Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+h2 {
+    color: #0d6efd;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+form:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+input[type="text"], button {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+button {
+    background-color: #0d6efd;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #0a58ca;
+}
+
+div.post {
+    background: #ffffff;
+    margin: 20px auto; /* This centers the post */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: max-content;
+    font-family: Arial, sans-serif;
+}
+
+
+div.post:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Post Header for user info and post date */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-header img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.post-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.post-header span {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Post Content */
+.post-content {
+    margin-bottom: 15px;
+}
+
+
+.post {
+    max-width: 600px; /* Adjust based on your preferred width */
+    margin: 20px auto; /* Center the post */
+    /* Other styling for the post */
+}
+
+/* Post Image */
+.post-image img {
+    max-width: 100%; /* Ensure image does not exceed the container width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: if you want rounded corners */
+}
+
+/* Post Actions (Like, Comment) */
+.post-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #0d6efd;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.post-actions button:hover {
+    color: #0a58ca;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}

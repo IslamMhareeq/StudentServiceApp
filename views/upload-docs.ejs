@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Upload Documents</title>
+</head>
+<body>
+    <h1>Upload Your Verification Documents</h1>
+    <form action="/submit-docs" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="document">Choose document(s) to upload (e.g., ID, certificate):</label>
+            <input type="file" id="document" name="document" multiple>
+        </div>
+        <div>
+            <button type="submit">Upload Document</button>
+        </div>
+    </form>
+</body>
+</html>

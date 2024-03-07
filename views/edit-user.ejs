@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Edit User</h1>
+    <form action="/admin/update-user/<%= user._id %>" method="post">
+        Email: <input type="email" name="email" value="<%= user.email %>" required><br>
+        <br>
+        Username: <input type="text" name="username" value="<%= user.username %>" required><br>
+        <br>
+        Role:
+        <select name="role" id="role">
+            <option value="student">Student</option>
+            <option value="employer">Employer</option>
+            <option value="instructor">Instructor</option>
+            <!-- Add other roles as necessary -->
+        </select>
+        <br>
+        Verified:
+        <select name="isVerified" id="isVerified">
+            <option value="true">Verified</option>
+            <option value="false">Not Verified</option>
+        </select>
+
+
+
+        <!-- Add other fields as necessary -->
+        <input type="submit" value="Update User">
+    </form>
+</body>
+</html>

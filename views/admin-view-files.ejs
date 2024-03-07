@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User's Uploaded Files</title>
+</head>
+<body>
+    <h1>User's Uploaded Files</h1>
+    <ul>
+        <% files.forEach(file => { %>
+            <li>
+                <%= file.filename %> - Uploaded on <%= file.uploadedAt.toDateString() %>
+                - <a href="/files/download/<%= file._id %>">Download</a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

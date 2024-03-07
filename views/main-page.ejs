@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/main-page.css"> <!-- Ensure the correct path -->
+</head>
+<body>
+    <!-- Form for submitting a new post with image upload -->
+    <form action="/submit-post" method="POST" enctype="multipart/form-data">
+        <input type="text" name="postContent" required placeholder="Write something...">
+        <input type="file" name="postImage" accept="image/*">
+        <button type="submit">Post</button>
+    </form>
+
+    <!-- Container for posts -->
+    <div id="posts-container">
+        <% if (posts && posts.length > 0) { %>
+            <% posts.forEach(function(post) { %>
+                <div class="post">
+                    <div class="post-header">
+                        <img src="/css/pics/profile.png" alt="User Profile Picture"> <!-- Placeholder for user profile picture -->
+                        <h3><%= post.userId.username %></h3> <!-- Display user's username -->
+                        <span>Posted on <%= post.createdAt.toDateString() %></span> <!-- Display post date -->
+                    </div>
+                    <div class="post-content">
+                        <p><%= post.content %></p> <!-- Display post content -->
+                    </div>
+                    <% if (post.image) { %> <!-- Check if the post has an associated image -->
+                        <div class="post-image">
+                            <img src="/post-image/<%= post.image %>" alt="Post Image"> <!-- Use the dedicated route to display the image -->
+                        </div>
+                    <% } %>
+                    <div class="post-actions">
+                        <% if (typeof currentUser !== 'undefined' && (currentUser.isAdmin || post.userId.toString() === currentUser._id.toString())) { %>
+                            <form action="/delete-post/<%= post._id %>" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No posts to display.</p>
+        <% } %>
+    </div>
+</body>
+</html>

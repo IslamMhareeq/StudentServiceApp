@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Page</title>
+  <link rel="stylesheet" href="/css/chat.css"> <!-- Make sure the path is correct -->
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <a>Chat</a>
+            <!-- You can add functionality to close or go back here -->
+            <div class="close">
+                <div class="line one"></div>
+                <div class="line two"></div>
+            </div>
+        </div>
+        <div class="messages-area" id="messages">
+            <!-- Messages will be dynamically inserted here -->
+        </div>
+        <div class="sender-area">
+            <form id="form" action="">
+                <div class="input-place">
+                    <input placeholder="Send a message." class="send-input" autocomplete="off" id="input" type="text">
+                    <div class="send" onclick="sendMessage()">
+                      <img src="/css/pics/send.png" alt="Send Icon"> 
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+      var currentUser = '<%= username %>'; 
+      var socket = io();
+      var form = document.getElementById('form');
+      var input = document.getElementById('input');
+      var messagesArea = document.getElementById('messages');
+    
+      form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          if (input.value && currentUser) {
+              socket.emit('chat message', { message: input.value, username: currentUser });
+              input.value = '';
+          }
+      });
+    
+      socket.on('chat message', function(data) {
+          var item = document.createElement('div');
+          item.classList.add('message');
+          item.textContent = `${data.username}: ${data.message}`;
+      
+          if (data.username === currentUser) {
+              item.classList.add('my-message');
+          }
+      
+          messagesArea.appendChild(item);
+          messagesArea.scrollTop = messagesArea.scrollHeight;
+      });
+    
+      function sendMessage() {
+          if (input.value && currentUser) {
+              socket.emit('chat message', { message: input.value, username: currentUser });
+              input.value = '';
+          }
+      }
+  </script>
+    
+</body>
+</html>
