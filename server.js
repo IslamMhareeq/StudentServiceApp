@@ -122,7 +122,7 @@ io.on('connection', function(socket) {
 
 
 
-const PORT = process.env.PORT || 3400;
+const PORT = process.env.PORT || 4040;
 server.listen(PORT, function () {
   console.log('Server is started on http://127.0.0.1:' + PORT);
 });
