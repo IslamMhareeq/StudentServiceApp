@@ -1,3 +1,5 @@
+let userSocketMap = new Map(); // Maps userId to socketId
+
 var express = require('express');
 var env = require('dotenv').config();
 var ejs = require( 'ejs');
@@ -110,19 +112,32 @@ app.use(function (err, req, res, next) {
 
 
 
-io.on('connection', function(socket) {
-  socket.on('chat message', function(data) {
-    // Expecting 'data' to be an object { message: "Hello", username: "User123" }
-    io.emit('chat message', data); // Emit the entire data object, including the username
+io.on('connection', (socket) => {
+  console.log('A user connected: ' + socket.id);
+
+  // Associate the socket with a user
+  socket.on('register user', (userId) => {
+      socket.userId = userId;
   });
 
-  socket.on('disconnect', function() {
+  socket.on('private message', (data) => {
+      const recipientSocket = Array.from(io.sockets.sockets.values())
+          .find(s => s.userId === data.recipientUserId);
+      if (recipientSocket) {
+          io.to(recipientSocket.id).emit('new private message', data);
+      }
+  });
+
+  socket.on('disconnect', () => {
+      console.log('User disconnected');
   });
 });
 
 
 
-const PORT = process.env.PORT || 4040;
+
+
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, function () {
   console.log('Server is started on http://127.0.0.1:' + PORT);
 });

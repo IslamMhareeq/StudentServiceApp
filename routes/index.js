@@ -24,6 +24,9 @@ const File = require('../models/file'); // Adjust the path as necessary
 const fs = require('fs');
 
 
+const Note = require('../models/note');
+
+
 
 
 
@@ -206,7 +209,7 @@ router.post('/forgot-password', async (req, res, next) => {
     };
    
     const token = jwt.sign(payload, secret, {expiresIn: '15m'});
-    const link = `http://localhost:4040/reset-password/${user._id}/${token}`;
+    const link = `http://localhost:8080/reset-password/${user._id}/${token}`;
 
     // Setup email transport and send the email
     const transporter = nodemailer.createTransport({
@@ -632,6 +635,127 @@ router.get('/chat', async (req, res) => {
 });
 
 
+
+
+
+
+
+
+router.post('/send-private-message', async (req, res) => {
+    
+    try {
+        
+
+    const senderId = req.session.userId; // Get the sender's user ID from session
+    const recipientUsername = req.body.recipientUsername;
+    const messageContent = req.body.messageContent;
+    
+    // Find the recipient user by their username
+    const recipient = await User.findOne({ username: recipientUsername });
+    if (!recipient) {
+      return res.status(404).send('Recipient not found');
+    }
+    
+    // Create and save the private message
+    const privateMessage = new PrivateMessage({
+      content: messageContent,
+      sender: senderId,
+      recipient: recipient._id
+    });
+    await privateMessage.save();
+    
+    res.send('Message sent successfully');
+
+
+
+
+
+
+
+
+
+    } catch (error) {
+        console.error("Error sending private message:", error);
+        res.status(500).send("Server Error");
+    }
+    
+    
+    
+    
+    
+});
+
+
+
+
+router.get('/fetch-received-messages/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const messages = await PrivateMessage.find({ recipient: userId })
+            .populate('sender', 'username')
+            .populate('recipient', 'username');
+        res.json(messages);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+
+router.get('/search-posts', async (req, res) => {
+    const searchQuery = req.query.query;
+    try {
+      const posts = await Post.find({
+        // Adjust this query based on how you want to search (e.g., post title, content)
+        $text: { $search: searchQuery } // Ensure your Post model has a text index for this to work
+      }).lean();
+      res.render('main-page', { posts });
+    } catch (error) {
+      console.error("Error searching posts:", error);
+      res.status(500).send("Error performing search");
+    }
+  });
+
+
+
+
+
+// CALENDAR NOTES 
+
+router.get('/notes-for-date/:date', async (req, res) => {
+    const { date } = req.params;
+    const notes = await Note.find({ date: date }).exec();
+    res.json(notes);
+});
+
+// Route to save a note
+// Assuming Note is correctly imported and defined at the top of your file
+// Example: const Note = require('../models/Note');
+
+router.post('/save-note', async (req, res) => {
+    try {
+        const { date, content } = req.body;
+        const userId = req.session.userId; // Ensure you have user session management set up to access this
+
+        if (!userId) {
+            return res.status(403).send("User not authenticated");
+        }
+
+        const newNote = new Note({
+            date: date,
+            content: content,
+            user: userId // Linking the note to the user's ID
+        });
+
+        await newNote.save();
+        res.send({ message: 'Note saved successfully' });
+    } catch (error) {
+        console.error('Error saving note:', error);
+        res.status(500).send('Error saving note');
+    }
+});
 
 
 

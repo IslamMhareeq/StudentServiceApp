@@ -4,45 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+    <link rel="stylesheet" href="/css/profile.css">
 
 
-    </style>
 </head>
 <body>
     <div class="container">
@@ -54,7 +18,115 @@
         <form id="logoutForm" action="/logout" method="post">
             <button type="submit">Logout</button>
         </form>
-        <a href="/chat" class="btn btn-primary">Go to Chat</a>
+        
+
+
+
+<body class="light">
     </div>
+    
+<br>
+<br>
+<br>
+
+    <div class="calendar">
+        <div class="calendar-header">
+            <span class="month-picker" id="month-picker">March</span>
+            <div class="year-picker">
+                <span class="year-change" id="prev-year">
+                    <pre><</pre>
+                </span>
+                <span id="year">2024</span>
+                <span class="year-change" id="next-year">
+                    <pre>></pre>
+                </span>
+            </div>
+        </div>
+        <div class="calendar-body">
+            <div class="calendar-week-day">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+    <div class="calendar-days"></div>
+        </div>
+        <div class="calendar-footer">
+            
+        </div>
+        <div class="month-list"></div>
+    </div> 
+
+   <!-- Modal for viewing/adding notes -->
+<div id="noteModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Note for <span id="noteDate"></span></h2>
+        <div id="notesContent"></div> <!-- Where fetched notes will be displayed -->
+        <textarea id="newNoteContent" rows="4" placeholder="Write your note here..."></textarea>
+        <button id="saveNoteButton" onclick="saveNote()">Save Note</button>
+    </div>
+</div>
+
+
+
+    
+
+    <script src="/css/js/app.js"></script>
+    
+<script>
+    document.querySelectorAll('.calendar-days div').forEach(day => {
+        day.addEventListener('click', function() {
+            console.log('Day clicked:', this.getAttribute('data-date'));
+            const date = this.getAttribute('data-date');
+            if (!date) return; // Skip if not a valid date
+            
+            // Fetch any existing notes for this date
+            fetch(`/notes-for-date/${date}`).then(res => res.json()).then(notes => {
+    // Make sure you're using the correct ID for the modal
+    const noteModal = document.getElementById('noteModal'); // Changed from 'noteModal' to 'noteModal'
+    const notesContent = document.getElementById('notesContent');
+    const noteDateField = document.getElementById('noteDate');
+    noteDateField.innerText = date; // Show the date in the modal
+                
+    notesContent.innerHTML = ''; // Clear previous notes
+                
+    notes.forEach(note => { // Populate with existing notes
+        const noteElement = document.createElement('p');
+        noteElement.textContent = note.content;
+        notesContent.appendChild(noteElement);
+    });
+
+    noteModal.style.display = 'block'; // Show the modal
+}).catch(err => console.error(err));
+
+    
+            // Setup your modal's save button to post a new note
+            document.getElementById('saveNoteButton').onclick = function() {
+                const noteInput = document.getElementById('newNoteContent').value;
+                fetch('/save-note', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ date, content: noteInput }),
+                }).then(() => {
+                    // Close modal and refresh notes or page
+                    noteModal.style.display = 'none';
+                    location.reload(); // Or fetch notes again for this date
+                }).catch(err => console.error(err));
+            };
+        });
+    });
+    
+    // Close modal logic here
+    document.querySelector('.close').addEventListener('click', () => {
+        document.getElementById('noteModal').style.display = 'none';
+    });
+    </script>
+</body>
 </body>
 </html>

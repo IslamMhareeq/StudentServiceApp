@@ -1,15 +1,17 @@
 {
-  "name": "creating-registration-and-login-form-in-nodejs-and-mongodb",
+  "name": "StudentServiceApplication",
   "version": "1.0.0",
   "description": "College Project ",
   "main": "server.js",
   "dependencies": {
+    "axios": "^1.6.7",
     "connect-mongo": "^5.1.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.9",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "googleapis": "^133.0.0",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^5.13.22",
     "multer": "^1.4.5-lts.1",
@@ -17,6 +19,7 @@
     "socket.io": "^4.7.4"
   },
   "scripts": {
+    "test": "jest",
     "start": "nodemon server.js"
   },
   "author": "MahmoodGneam",

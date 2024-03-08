@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -7,8 +8,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./css/main.css">
     <script type="text/javascript">
-        $(document).ready(function(){
-            $("#loginForm").submit(function(event) {
+        $(document).ready(function () {
+            $("#loginForm").submit(function (event) {
                 event.preventDefault(); // Prevent form submission
 
                 var formData = {
@@ -21,23 +22,25 @@
                     url: "/login",
                     data: formData,
                     dataType: "json",
-                    success: function(response) {
-    if (response.loginSuccess) {
-        if (response.isAdmin) {
-            window.location.href = '/admin-panel'; 
-        } else {
-            if (response.isVerified === false) {
-                window.location.href = '/upload-docs'; 
-            }
-            else {
-                window.location.href = '/profile'; 
-            }
-        }
-    } else {
-        alert(response.message); // Show error message
-    }
-},
-                    error: function(xhr) {
+                    success: function (response) {
+                        if (response.loginSuccess) {
+                            if (response.isAdmin === true) {
+                                console.log("Is verified : " + response.isVerified);
+                                window.location.href = '/admin-panel';
+                            }
+                            else {
+                                if (response.isVerified === true) {
+                                    window.location.href = '/profile';
+                                }
+                                else {
+                                    window.location.href = '/upload-docs';
+                                }
+                            }
+                        } else {
+                            alert(response.message); // Show error message
+                        }
+                    },
+                    error: function (xhr) {
                         alert("Login failed: " + xhr.responseText);
                     }
                 });
@@ -45,18 +48,23 @@
         });
     </script>
 </head>
+
 <body>
     <div class="col-md-4 col-md-offset-4">
-        <div><p>Login</p></div>
+        <div>
+            <p>Login</p>
+        </div>
         <div class="form-group">
             <form id="loginForm" method="post">
-                <input type="text" id="email" name="email" placeholder="E-mail" required="" class="form-control"><br/>
-                <input type="password" id="password" name="password" placeholder="Password" required="" class="form-control"><br/>
+                <input type="text" id="email" name="email" placeholder="E-mail" required="" class="form-control"><br />
+                <input type="password" id="password" name="password" placeholder="Password" required=""
+                    class="form-control"><br />
                 <button type="submit" class="btn btn-success">Login</button>
             </form>
         </div>
         <div><span>Forgot password?</span><a href="/forgot-password"> Click here</a></div>
-        <div><span>Create a new Account?</span><a href="/"> Register here</a></div>
+        <div><span>Create a new Account?</span><a href="/register"> Register here</a></div>
     </div>
 </body>
+
 </html>

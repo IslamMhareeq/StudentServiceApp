@@ -7,6 +7,10 @@ const postSchema = new Schema({
     image: { type: mongoose.Schema.Types.ObjectId, ref: 'postImage' }
 }, { timestamps: true });
 
+postSchema.index({ title: 'text', content: 'text' });
+
 const Post = mongoose.model('Post', postSchema);
+
+Post.createIndexes();
 
 module.exports = Post;
